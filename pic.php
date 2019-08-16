@@ -72,7 +72,10 @@ class crawler {
     }
 }
 
-$id = 315;
+$id = (int)$argv[1];
+if( !$id || $id <= 0 ){
+    exit('params id error');
+}
 $savePath = "./files";
 
 //创建目录
