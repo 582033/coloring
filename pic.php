@@ -72,6 +72,10 @@ class crawler {
     }
 }
 
+
+if( !isset($argv[1]) ){
+    exit("params error, exam:php pic.php <pic_id>\n");
+}
 $id = (int)$argv[1];
 if( !$id || $id <= 0 ){
     exit('params id error');
@@ -83,7 +87,6 @@ if( !file_exists($savePath) ){
     mkdir($savePath);
     echo "存储目录{$savePath}创建成功\n";
 }
-
 
 echo "正在获取所有图片链接...\n";
 //获取id页面内的所有图片url
@@ -101,7 +104,6 @@ foreach($picList as $picInfo){
     ];
 }
 //echo "<pre>"; print_r($picsParams);exit;
-
 
 echo "正在获取图片内容...\n";
 //多线程获取图片内容
