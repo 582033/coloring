@@ -5,7 +5,6 @@ use Sunra\PhpSimple\HtmlDomParser;
 use GuzzleHttp\Client;
 use GuzzleHttp\Promise;
 
-
 //curl多线程请求
 class multCurl {
     public function __construct(){
@@ -47,11 +46,14 @@ class multCurl {
 
 class crawler {
     public function __construct($id){
+        $this->client = new Client();
         $this->url = "http://www.coloring-book.info/coloring/coloring_page.php?id={$id}";
     }
 
     public function get(){
-        $c = file_get_contents($this->url);
+        //$c = file_get_contents($this->url);
+        $res = $this->client->request('GET', $this->url);
+        $c = $res->getBody()->getContents();
         $dom = HtmlDomParser::str_get_html( $c );
 
         $picList = [];
